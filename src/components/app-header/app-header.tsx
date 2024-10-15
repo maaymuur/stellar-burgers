@@ -9,7 +9,7 @@ export const AppHeader: FC = () => {
 
   const handleOrdersClick = () => {
     navigate('/feed');
-  };
+  }; //-
 
   const handleConstructorClick = () => {
     navigate('/');
