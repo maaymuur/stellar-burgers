@@ -19,11 +19,12 @@ import { Profile } from '@pages';
 import { ProfileOrders } from '@pages';
 import { fetchIngredients } from '../ingredientsSlice';
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from 'src/services/store';
+import { useDispatch } from '../../services/store';
+import { AppDispatch } from '../../services/store';
 import { Modal } from '@components';
 import { OrderInfo } from '@components';
 import { IngredientDetails } from '@components';
+import { apiGetUser } from '../../components/userSlice';
 import ProtectedRoute from '../protectedRoute/protectedRoute';
 
 const App = () => {
@@ -31,6 +32,8 @@ const App = () => {
 
   useEffect(() => {
     dispatch(fetchIngredients());
+    // Проверка пользователя при загрузке приложения
+    dispatch(apiGetUser());
   }, [dispatch]);
 
   return (
@@ -58,7 +61,6 @@ const AppContent = () => {
         <Route path='/feed' element={<Feed />} />
         <Route path='/feed/:number' element={<Feed />} />
 
-        {/* Защищенные маршруты */}
         <Route
           path='/login'
           element={

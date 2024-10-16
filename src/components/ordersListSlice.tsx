@@ -7,13 +7,15 @@ export const getUserOrders = createAsyncThunk('order/getOrders', async () =>
 );
 
 export interface TOrdersState {
+  ingredientCount: any;
   orders: Array<TOrder>;
   loading: boolean;
 }
 
 const initialState: TOrdersState = {
   orders: [],
-  loading: true
+  loading: true,
+  ingredientCount: undefined
 };
 
 export const ordersListSlice = createSlice({

@@ -1,4 +1,3 @@
-// src/components/Feed.tsx
 import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from '../../services/store';
 import { Preloader } from '@ui';

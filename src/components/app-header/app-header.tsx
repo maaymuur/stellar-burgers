@@ -1,15 +1,16 @@
 import { FC } from 'react';
 import { AppHeaderUI } from '@ui';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector } from '../../services/store';
 import { isAuthCheckedSelector } from '../userSlice';
+
 export const AppHeader: FC = () => {
   const navigate = useNavigate();
   const isAuthChecked = useSelector(isAuthCheckedSelector);
 
   const handleOrdersClick = () => {
     navigate('/feed');
-  }; //-
+  };
 
   const handleConstructorClick = () => {
     navigate('/');
