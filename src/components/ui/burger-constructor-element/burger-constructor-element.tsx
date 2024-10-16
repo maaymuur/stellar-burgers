@@ -4,9 +4,9 @@ import {
   ConstructorElement,
   MoveButton
 } from '@zlden/react-developer-burger-ui-components';
-import { useDispatch } from 'react-redux';
 import { deleteItem } from '../../orderSlice';
 import { BurgerConstructorElementUIProps } from './type';
+import { useDispatch, useSelector } from '../../../services/store';
 
 export const BurgerConstructorElementUI: FC<BurgerConstructorElementUIProps> =
   memo(({ ingredient, index, totalItems, handleMoveUp, handleMoveDown }) => {

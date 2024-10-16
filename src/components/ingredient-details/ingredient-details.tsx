@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { RootState } from 'src/services/store';
+import { useSelector } from '../../services/store';
+import { RootState } from '../../services/store';
 import { IngredientDetailsUI } from '@ui';
 
 export const IngredientDetails: React.FC = () => {
