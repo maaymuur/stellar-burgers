@@ -1,19 +1,12 @@
 import orderSlice, {
   addItem,
   deleteItem,
-  moveItem
+  moveItem,
+  initialState 
 } from '../components/orderSlice';
 import { TConstructorIngredient } from '@utils-types';
 
 describe('orderSlice reducer', () => {
-  let initialState;
-
-  beforeEach(() => {
-    initialState = {
-      bun: null,
-      ingredients: []
-    };
-  });
 
   it('should handle adding a non-bun ingredient', () => {
     const action = addItem({
@@ -48,19 +41,19 @@ describe('orderSlice reducer', () => {
     });
   });
 
-  it('should handle removeFromConstructor action', () => {
-    const initialState = {
-      bun: null,
+  it('should handle deleteItem action', () => {
+    const modifiedState = {
+      ...initialState,
       ingredients: [{ id: '1', name: 'Ingredient 1', type: 'sauce', price: 10 }]
     };
 
-    const newState = orderSlice.reducer(initialState, deleteItem({ id: '1' }));
+    const newState = orderSlice.reducer(modifiedState, deleteItem({ id: '1' }));
     expect(newState.ingredients).toHaveLength(0);
   });
 
-  it('should handle reorderConstructor action', () => {
-    const initialState = {
-      bun: null,
+  it('should handle moveItem action', () => {
+    const modifiedState = {
+      ...initialState,
       ingredients: [
         { id: '1', name: 'Ingredient 1', type: 'sauce', price: 10 },
         { id: '2', name: 'Ingredient 2', type: 'main', price: 20 }
@@ -68,7 +61,7 @@ describe('orderSlice reducer', () => {
     };
 
     const newState = orderSlice.reducer(
-      initialState,
+      modifiedState,
       moveItem({ fromIndex: 0, toIndex: 1 })
     );
 

@@ -1,17 +1,7 @@
-import feedReducer, { getAllFeeds } from '../components/feedSlice';
+import feedReducer, { getAllFeeds, initialState } from '../components/feedSlice'; // Импорт initialState
+import { TOrder } from '@utils-types';
 
 describe('feedSlice reducer', () => {
-  let initialState;
-
-  beforeEach(() => {
-    initialState = {
-      orders: [],
-      total: 0,
-      totalToday: 0,
-      isLoading: true,
-      error: undefined
-    };
-  });
 
   it('should set isLoading to true when fetching feeds is pending', () => {
     const action = { type: getAllFeeds.pending.type };

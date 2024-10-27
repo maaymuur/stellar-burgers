@@ -1,17 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { getUserOrders } from '../components/ordersListSlice';
-import ordersListSlice from '../components/ordersListSlice';
+import ordersListSlice, { getUserOrders, initialState } from '../components/ordersListSlice';
 
 describe('ordersListSlice reducer', () => {
-  let initialState;
-
-  beforeEach(() => {
-    initialState = {
-      orders: [],
-      loading: true,
-      ingredientCount: undefined
-    };
-  });
 
   it('should set loading to true when fetching orders is pending', () => {
     const action = { type: getUserOrders.pending.type };

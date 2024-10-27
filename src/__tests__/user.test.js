@@ -1,32 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
-import {
-  register,
-  login,
-  apiGetUser,
-  updateUser
-} from '../components/userSlice';
-import userSlice from '../components/userSlice';
+import userSlice, { register, login, apiGetUser, updateUser, initialState } from '../components/userSlice';
 
 describe('userSlice reducer', () => {
-  let initialState;
-
-  beforeEach(() => {
-    initialState = {
-      isAuthChecked: false,
-      user: {
-        email: '',
-        name: ''
-      },
-      error: undefined
-    };
-  });
-
+  
   it('should set isLoading to true when registration is pending', () => {
     const action = { type: register.pending.type };
     const newState = userSlice.reducer(initialState, action);
 
     expect(newState.isAuthChecked).toBe(false);
-    expect(newState.error).toBe(undefined);
+    expect(newState.error).toBeUndefined();
   });
 
   it('should handle successful registration', () => {
@@ -36,14 +17,11 @@ describe('userSlice reducer', () => {
 
     expect(newState.isAuthChecked).toBe(true);
     expect(newState.user).toEqual(userData.user);
-    expect(newState.error).toBe(undefined);
+    expect(newState.error).toBeUndefined();
   });
 
   it('should handle failed registration', () => {
-    const action = {
-      type: register.rejected.type,
-      error: { message: 'Registration failed' }
-    };
+    const action = { type: register.rejected.type, error: { message: 'Registration failed' } };
     const newState = userSlice.reducer(initialState, action);
 
     expect(newState.error).toBe('Registration failed');
@@ -54,7 +32,7 @@ describe('userSlice reducer', () => {
     const newState = userSlice.reducer(initialState, action);
 
     expect(newState.isAuthChecked).toBe(false);
-    expect(newState.error).toBe(undefined);
+    expect(newState.error).toBeUndefined();
   });
 
   it('should handle successful login', () => {
@@ -64,14 +42,11 @@ describe('userSlice reducer', () => {
 
     expect(newState.isAuthChecked).toBe(true);
     expect(newState.user).toEqual(userData.user);
-    expect(newState.error).toBe(undefined);
+    expect(newState.error).toBeUndefined();
   });
 
   it('should handle failed login', () => {
-    const action = {
-      type: login.rejected.type,
-      error: { message: 'Login failed' }
-    };
+    const action = { type: login.rejected.type, error: { message: 'Login failed' } };
     const newState = userSlice.reducer(initialState, action);
 
     expect(newState.isAuthChecked).toBe(false);
@@ -88,10 +63,7 @@ describe('userSlice reducer', () => {
   });
 
   it('should handle failed fetching user data', () => {
-    const action = {
-      type: apiGetUser.rejected.type,
-      error: { message: 'Failed to fetch user' }
-    };
+    const action = { type: apiGetUser.rejected.type, error: { message: 'Failed to fetch user' } };
     const newState = userSlice.reducer(initialState, action);
 
     expect(newState.isAuthChecked).toBe(false);
@@ -99,9 +71,7 @@ describe('userSlice reducer', () => {
   });
 
   it('should handle user update', () => {
-    const userData = {
-      user: { email: 'updated@example.com', name: 'Updated User' }
-    };
+    const userData = { user: { email: 'updated@example.com', name: 'Updated User' } };
     const action = { type: updateUser.fulfilled.type, payload: userData };
     const newState = userSlice.reducer(initialState, action);
 
@@ -110,10 +80,7 @@ describe('userSlice reducer', () => {
   });
 
   it('should handle failed user update', () => {
-    const action = {
-      type: updateUser.rejected.type,
-      error: { message: 'Update failed' }
-    };
+    const action = { type: updateUser.rejected.type, error: { message: 'Update failed' } };
     const newState = userSlice.reducer(initialState, action);
 
     expect(newState.isAuthChecked).toBe(false);
