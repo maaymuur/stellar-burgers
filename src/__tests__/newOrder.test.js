@@ -1,4 +1,8 @@
-import newOrderSlice, { newOrder, resetOrder, initialState } from '../components/newOrder'; // Проверьте путь
+import newOrderSlice, {
+  newOrder,
+  resetOrder,
+  initialState
+} from '../components/newOrder';
 
 describe('newOrderSlice reducer', () => {
   it('should set loading to true when creating an order is pending', () => {
@@ -23,7 +27,7 @@ describe('newOrderSlice reducer', () => {
   it('should handle failed order creation', () => {
     const action = {
       type: newOrder.rejected.type,
-      error: { message: 'Order creation failed' },
+      error: { message: 'Order creation failed' }
     };
     const newState = newOrderSlice.reducer(initialState, action);
 
@@ -36,15 +40,14 @@ describe('newOrderSlice reducer', () => {
     const modifiedState = {
       loading: true,
       order: { id: 1, name: 'Burger' },
-      error: 'Some error message',
+      error: 'Some error message'
     };
 
     const action = resetOrder();
     const newState = newOrderSlice.reducer(modifiedState, action);
 
-
     expect(newState.loading).toBe(initialState.loading);
-    expect(newState.order).toBe(initialState.order); 
-    expect(newState.error).toBe(initialState.error); 
+    expect(newState.order).toBe(initialState.order);
+    expect(newState.error).toBe(initialState.error);
   });
 });

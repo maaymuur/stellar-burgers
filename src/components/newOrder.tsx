@@ -43,5 +43,5 @@ export const { resetOrder } = newOrderSlice.actions;
 
 export const newOrderLoad = (state: RootState) => state.newOrder.loading;
 export const newOrderData = (state: RootState) => state.newOrder.order;
-export { initialState }; 
+export { initialState };
 export default newOrderSlice;
