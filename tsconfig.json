@@ -15,7 +15,7 @@
     "isolatedModules": true,
     "noEmit": false,
     "jsx": "react-jsx",
-    "types": ["node", "jest"],
+    "types": ["node", "jest", "cypress"],
     "baseUrl": "./",
     "paths": {
       "@pages": ["src/pages"],
@@ -26,8 +26,8 @@
       "@api": ["src/utils/burger-api.ts"],
       "@slices": ["src/services/slices"],
       "@selectors": ["src/services/selectors"],
-      "src/*": ["src/*"]
+      "src/*": ["src/*"],
     }
   },
-  "include": ["src", "src/components/feedSlice.tsx", "src/components/ingredientsSlice.tsx", "orderSlice.tsx"]
+  "include": ["src", "cypress/**/*.ts", "cypress/e2e/constructor.cy.tsx", "src/components/feedSlice.tsx", "src/components/ingredientsSlice.tsx", "orderSlice.tsx"]
 }
